@@ -9,13 +9,16 @@ export class StatusPipePipe implements PipeTransform {
     let progressValue: string = ''
     switch (value) {
       case 'inProgress':
-        progressValue = 'In Progress';
+        progressValue = 'В процессе';
         break;
       case 'fail':
-        progressValue = 'Fail';
+        progressValue = 'Не выполнено';
         break;
       case 'success':
-        progressValue = 'Success';
+        progressValue = 'Выполнено';
+        break;
+      case 'new':
+        progressValue = 'Новая';
         break;
 
       default:

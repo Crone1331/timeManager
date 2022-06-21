@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IData, Status, testData} from 'src/app/params';
+import {IData, Status} from 'src/app/params';
 import {DataService} from 'src/app/services/data.service';
 
 @Component({
@@ -8,7 +8,8 @@ import {DataService} from 'src/app/services/data.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public data: IData[] = testData;
+  public data: IData[] = [];
+  public endDateValue: Date = new Date;
   public inputText: string = '';
 
   constructor(private dataService: DataService) {}
@@ -24,8 +25,9 @@ export class AppComponent implements OnInit {
       const task: IData = {
         id: '',
         taskName: this.inputText,
-        endData: '22.22.23',
-        status: 'inProgress'
+        endData: this.endDateValue,
+        startData: new Date,
+        status: this.endDateValue >= new Date ? 'new' : 'fail'
       }
       this.dataService.setNewTask(task)
       this.data = this.dataService.getTaskList();
@@ -42,4 +44,6 @@ export class AppComponent implements OnInit {
     this.dataService.removeTask(id);
     this.data = this.dataService.getTaskList();
   }
+
 }
+

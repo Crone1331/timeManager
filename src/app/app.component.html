@@ -8,8 +8,16 @@
 
 <div class="container">
   <div class="task">
-    <input type="text" [(ngModel)]="inputText">
-    <button (click)="addNewTask()">Добавить новую задачу</button>
+    <div class="text-field">
+      <label class="text-field__label" for="text">Введите текст задачи</label>
+      <input class="text-field__input" type="text" name="text" id="text"  [(ngModel)]="inputText" placeholder="">
+    </div>
+    <mat-form-field>
+      <input matInput placeholder="Дата завершения" [matDatepicker]="datepicker" [(ngModel)]="endDateValue">
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+    <div class="shine-button" (click)="addNewTask()">Добавить</div>
   </div>
   <div class="table">
     <div class="table__header">
@@ -17,19 +25,22 @@
         #
       </div>
       <div class="table__header-elem">
-        Task Name
+        Описание задачи
       </div>
       <div class="table__header-elem">
-        End date
+        Дата начала
       </div>
       <div class="table__header-elem">
-        Status
+       Дата окончания
       </div>
       <div class="table__header-elem">
-        Edit
+        Статус задачи
       </div>
       <div class="table__header-elem">
-        Remove
+
+      </div>
+      <div class="table__header-elem">
+
       </div>
     </div>
     <hr>
@@ -41,22 +52,25 @@
         {{item.taskName}}
       </div>
       <div class="table__content-elem" >
-        {{item.endData}}
+        {{item.startData | date:'mediumDate'}}
+      </div>
+      <div class="table__content-elem" >
+        {{item.endData | date:'mediumDate'}}
       </div>
       <div class="table__content-elem" [ngClass]='item.status'>
         {{item.status | statusPipe}}
       </div>
       <div class="table__content-elem dropdown">
-        <div class="dropbtn">EditStatusBTN</div>
+        <div class="shine-button">Обновить</div>
         <ul class="dropdown-content">
-          <li class="dropdown__container-btn" (click)="editTaskStatus(item.id, 'inProgress')">In progress</li>
-          <li class="dropdown__container-btn" (click)="editTaskStatus(item.id, 'fail')">Failed</li>
-          <li class="dropdown__container-btn" (click)="editTaskStatus(item.id, 'success')">Success</li>
+          <li class="dropdown__container-btn" (click)="editTaskStatus(item.id, 'inProgress')">В процессе</li>
+          <li class="dropdown__container-btn" (click)="editTaskStatus(item.id, 'fail')">Не выполнено</li>
+          <li class="dropdown__container-btn" (click)="editTaskStatus(item.id, 'success')">Выполнено</li>
         </ul>
 
       </div>
       <div class="table__content-elem" >
-        <button (click)="removeTask(item.id)">RemoveBTN</button>
+        <div class="shine-button" (click)="removeTask(item.id)">Удалить</div>
       </div>
 
     </div>
