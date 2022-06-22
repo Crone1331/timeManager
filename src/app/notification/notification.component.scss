@@ -1,0 +1,28 @@
+.alert-wrap {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  z-index: 10;
+
+  .alert-succes {
+    max-width: 320px;
+    padding: 20px;
+    background-color: rgba(187, 233, 185, 0.9);
+  }
+
+  .alert-warning {
+    max-width: 320px;
+    padding: 20px;
+    background-color: rgba(105, 112, 74, 0.9);
+  }
+
+  .alert-danger {
+    max-width: 320px;
+    padding: 20px;
+    background-color: rgba(255, 52, 52, 0.9);
+  }
+}

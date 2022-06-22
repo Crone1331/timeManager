@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 
@@ -9,11 +9,16 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import localeRu from '@angular/common/locales/ru';
+import {registerLocaleData} from '@angular/common';
+import {NotificationComponent} from './notification/notification.component';
+import {NotificationService} from 'src/app/services/notification.service';
+registerLocaleData(localeRu);
 @NgModule({
   declarations: [
     AppComponent,
-    StatusPipePipe
+    StatusPipePipe,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -21,10 +26,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
-
+    {provide: LOCALE_ID, useValue: 'ru'}
   ],
   bootstrap: [AppComponent]
 })
